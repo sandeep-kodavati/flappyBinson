@@ -1,8 +1,16 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth > 500 ? 400 : window.innerWidth - 20;
-canvas.height = window.innerHeight > 700 ? 600 : window.innerHeight - 20;
+const baseWidth = 400;
+const baseHeight = 600;
+
+if (window.innerWidth < 500) {
+  canvas.width = window.innerWidth * 0.9;
+  canvas.height = canvas.width * (baseHeight / baseWidth);
+} else {
+  canvas.width = baseWidth;
+  canvas.height = baseHeight;
+}
 
 let gameState = "start"; 
 // "start" | "playing" | "gameover"
