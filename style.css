@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #2b2b4f);
+  color: white;
+  text-align: center;
+}
+
+canvas {
+  display: block;
+  margin: auto;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(255, 192, 203, 0.4);
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  top: 40%;
+  z-index: 10;
+}
