@@ -5,6 +5,7 @@ body {
   background: linear-gradient(135deg, #1e1e2f, #2b2b4f);
   color: white;
   text-align: center;
+  touch-action: none;
 }
 
 canvas {

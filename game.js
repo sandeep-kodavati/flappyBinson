@@ -1,8 +1,8 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = 400;
-canvas.height = 600;
+canvas.width = window.innerWidth > 500 ? 400 : window.innerWidth - 20;
+canvas.height = window.innerHeight > 700 ? 600 : window.innerHeight - 20;
 
 let gameState = "start"; 
 // "start" | "playing" | "gameover"
@@ -19,24 +19,41 @@ let birdY = 250;
 let score = 0;
 let pipes = [];
 
+function handleInput() {
+
+  if (gameState === "start") {
+    gameState = "playing";
+    document.querySelector(".overlay").style.display = "none";
+
+    bgMusic.currentTime = 0;
+    bgMusic.play().catch(() => {});
+  }
+
+  else if (gameState === "gameover") {
+    resetGame();
+    return;
+  }
+
+  if (gameState === "playing") {
+    velocity = -8;
+  }
+}
+
+// Desktop keyboard
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space") {
-
-    if (gameState === "start") {
-      gameState = "playing";
-      bgMusic.currentTime = 0;
-      bgMusic.play();
-      document.querySelector(".overlay").style.display = "none";
-    }
-
-    else if (gameState === "gameover") {
-      resetGame();
-    }
-
-    if (gameState === "playing") {
-      velocity = -8;
-    }
+    handleInput();
   }
+});
+
+// Mobile tap
+document.addEventListener("touchstart", () => {
+  handleInput();
+});
+
+// Mouse click
+document.addEventListener("click", () => {
+  handleInput();
 });
 
 function createPipe() {
